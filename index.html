@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <meta name="google-site-verification" content="WvascqN07vQf8S-Jp7xaRO3cwzO_T_UUUy_OeMAXOGE" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PetroTube</title>
+  <style>
+      .thumb-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.thumb {
+  cursor: pointer;
+  width: 320px;
+}
+
+.thumb img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.thumb h3 {
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
+      .thumb-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+.thumb { cursor: pointer; width: 320px; }
+.thumb img { width: 100%; border-radius: 8px; }
+.thumb h3 { margin: 10px 0 0; font-size: 1rem; }
+      .thumb-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.thumb {
+  cursor: pointer;
+  width: 320px;
+}
+
+.thumb img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.thumb h3 {
+  margin: 10px 0 0;
+  font-size: 1rem;
+}
+      .thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.thumb {
+  background: var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.thumb:hover {
+  transform: scale(1.02);
+}
+
+.thumb img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.thumb h3 {
+  margin: 10px 0 0 0;
+  font-size: 1rem;
+}
+    :root {
+      --bg-color: #0b0b0b;
+      --primary-color: #1a1a1a;
+      --accent-color: #e0a100;
+      --text-color: #f0f0f0;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      overflow-x: auto;
+    }
+
+    .menu-toggle {
+      font-size: 1.5rem;
+      margin-right: 20px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      color: var(--accent-color);
+      margin: 0;
+      font-size: 1.5rem;
+      margin-right: 30px;
+      flex-shrink: 0;
+    }
+
+    header nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: nowrap;
+    }
+
+    header nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    header nav a:hover {
+      color: var(--accent-color);
+    }
+
+    #sidebar {
+      position: fixed;
+      top: 60px;
+      left: -220px;
+      width: 200px;
+      height: calc(100% - 60px);
+      background-color: var(--primary-color);
+      padding: 20px;
+      box-sizing: border-box;
+      transition: left 0.3s;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    #sidebar.active {
+      left: 0;
+    }
+
+    #sidebar nav a {
+      display: block;
+      color: var(--text-color);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    #sidebar nav a:hover {
+      color: var(--accent-color);
+    }
+
+    main {
+      margin-top: 60px;
+      margin-left: 0;
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    main.shifted {
+      margin-left: 200px;
+    }
+
+    .auth-form {
+      max-width: 400px;
+      margin: 40px auto;
+      background-color: var(--primary-color);
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .auth-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .auth-form button {
+      padding: 10px 20px;
+      background-color: var(--accent-color);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .auth-form button:hover {
+      background-color: #ffc107;
+    }
+
+    @media (max-width: 768px) {
+      header nav {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="menu-toggle" onclick="toggleSidebar()">&#9776;</div>
+    <h1>PetroSex</h1>
+    <nav>
+      <a onclick="showContent('melhor')">Melhor de</a>
+      <a onclick="showContent('sucessos')">Sucessos</a>
+      <a onclick="showContent('tags')">Tags</a>
+      <a onclick="showContent('fotos')">Fotos</a>
+      <a onclick="showContent('cameras')">Câmeras ao vivo</a>
+      <a onclick="showContent('historias')">Histórias de Petro</a>
+      <a onclick="showContent('forum')">Fórum</a>
+      <a onclick="showContent('engenheiros')">Engenheiros</a>
+      <a onclick="showContent('jogos')">Jogos</a>
+      <a onclick="showContent('namoriscar')">Namoriscar</a>
+      <a onclick="showContent('conta')"><span id="userIcon">👤</span></a>
+      <a onclick="showContent('definicoes')">⚙️</a>
+      <a onclick="showContent('favoritos')">🔒</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+<aside id="sidebar">
+  <nav>
+    <a onclick="showContent('home')">Início</a>
+    <a onclick="showContent('explore')">Explorar</a>
+    <a onclick="showContent('subscriptions')">Inscrições</a>
+    <a onclick="showContent('library')">Biblioteca</a>
+    <a onclick="showContent('history')">Histórico</a>
+    <hr style="border: 1px solid var(--accent-color); margin: 10px 0;">
+    <h3 style="margin:10px 0;">Categorias</h3>
+    <a onclick="showContent('familia')">Família</a>
+    <a onclick="showContent('hardcore')">Hardcore</a>
+    <a onclick="showContent('milf')">Milf</a>
+    <a onclick="showContent('garotas_negras')">Garotas Negras</a>
+    <a onclick="showContent('doggystyle')">Doggystyle</a>
+    <a onclick="showContent('big_dick')">Big Dick</a>
+    <a onclick="showContent('bunda_grande')">Bunda Grande</a>
+    <a onclick="showContent('latina')">Latina</a>
+    <a onclick="showContent('nigeria')">Nigéria</a>
+    <a onclick="showContent('18')">18</a>
+    <a onclick="showContent('japonese')">japonese</a>
+    <a onclick="showContent('incesto')">incesto</a>
+    <a onclick="showContent('lesbica')">lesbica</a>
+    <a onclick="showContent('stepsis')">Stepsis</a>
+    <a onclick="showContent('stepmom')">Stepmom</a>
+    <a onclick="showContent('cosplay')">cosplay</a>
+    <a onclick="showContent('escola')">escola</a>
+    <a onclick="showContent('hentai')">Hentai</a>
+    <a onclick="showContent('upload')">Upload</a>
+  </nav>
+</aside>
+
+  <main id="content">
+    <h2>Bem-vindo</h2>
+    <p>Escolha uma aba na barra superior ou no menu lateral!</p>
+  </main>
+
+  <script>
+      function showVideoPage(videoUrl) {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="video-player">
+      <iframe src="${videoUrl}" frameborder="0" width="100%" height="500px" allowfullscreen></iframe>
+    </div>
+  `;
+}
+      function showVideoPage(videoUrl) {
+  const content = document.getElementById('content');
+  content.innerHTML = `
+    <div class="video-player">
+      <iframe src="${videoUrl}" frameborder="0" width="100%" height="500px" allowfullscreen></iframe>
+    </div>
+  `;
+}
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
+      sidebar.classList.toggle('active');
+      content.classList.toggle('shifted');
+    }
+
+    function showContent(section) {
+      const content = document.getElementById('content');
+      let html = '';
+
+      switch(section) {
+        case 'melhor':
+  html = `
+    <h2>Melhor de</h2>
+    <div class="video-grid">
+      <iframe src="https://www.xvideos.com/embedframe/ohhmtph8252" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+      <iframe src="https://www.xvideos.com/embedframe/kekeucoea60" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+      <iframe src="https://www.xvideos.com/embedframe/hcboflm077b" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+      <iframe src="https://www.xvideos.com/embedframe/hvfcmkfccea" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+      <iframe src="https://www.xvideos.com/embedframe/ukcpfch6d53" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+    </div>
+  `;
+  break;
+        case 'sucessos':
+  html = `
+    <h2>Melhor de</h2>
+    <div class="video-grid">
+      <iframe src="https://www.xvideos.com/embedframe/ohcmmbd0900" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+      <iframe src="https://www.xvideos.com/embedframe/ohfffehb6f7" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+      <iframe src="https://www.xvideos.com/embedframe/ohkhfdo5b13" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
+    </div>
+  `;
+  break;
+        case 'tags':
+          html = `<h2>Tags</h2><p>Explore vídeos por tags.</p>`;
+          break;
+        case 'fotos':
+          html = `<h2>Fotos</h2><p>Galeria de fotos do PetroSex.</p>`;
+          break;
+        case 'cameras':
+          html = `<h2>Câmeras ao vivo</h2><p>Transmissões ao vivo.</p>`;
+          break;
+        case 'historias':
+          html = `<h2>Histórias de Petro</h2><p>Histórias e bastidores exclusivos.</p>`;
+          break;
+        case 'forum':
+          html = `<h2>Fórum</h2><p>Participe de discussões com outros usuários.</p>`;
+          break;
+        case 'engenheiros':
+          html = `<h2>Engenheiros</h2><p>Área dedicada aos engenheiros do Petro.</p>`;
+          break;
+        case 'jogos':
+          html = `<h2>Jogos</h2><p>Divirta-se com nossos jogos interativos.</p>`;
+          break;
+        case 'namoriscar':
+          html = `<h2>Namoriscar</h2><p>Área para conhecer novas pessoas.</p>`;
+          break;
+        case 'conta':
+  html = `
+    <div class="auth-form">
+      <h2>Registrar</h2>
+      <form method="POST" action="register.php">
+        <input name="username" type="text" placeholder="Nome de usuário" required>
+        <input name="password" type="password" placeholder="Senha" required>
+        <button type="submit">Registrar</button>
+      </form>
+    </div>
+
+    <div class="auth-form">
+      <h2>Entrar</h2>
+      <form method="POST" action="login.php">
+        <input name="username" type="text" placeholder="Nome de usuário" required>
+        <input name="password" type="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  `;
+  break;
+        case 'register':
+  html = `<form action="register.php" method="POST" class="auth-form">
+            <h2>Registrar</h2>
+            <input name="username" type="text" placeholder="Nome de usuário">
+            <input name="password" type="password" placeholder="Senha">
+            <button type="submit">Registrar</button>
+          </form>`;
+  break;
+        case 'definicoes':
+          html = `<h2>Definições</h2><p>Configurações da sua conta.</p>`;
+          break;
+        case 'favoritos':
+          html = `<h2>Favoritos</h2><p>Veja seus vídeos salvos.</p>`;
+          break;
+
+        // Sidebar principais
+       case 'home':
+  html = `
+    <h2>Início</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kclhfbbceca')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/42/6b/87/426b87d9ee6ebfdc88691501ffadbb2a/426b87d9ee6ebfdc88691501ffadbb2a.30.jpg" alt="Thumb 1">
+        <h3>MIA KHALIFA - Noite de videogame com Rachel Rose e Tiffany Valentine </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohpdhdde406')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/23/50/99/23509981fec5ec163abed6f635c77ba5/23509981fec5ec163abed6f635c77ba5.29.jpg" alt="Thumb 2">
+        <h3>A gostosa meia-irmã Bailey Base de dezoito anos</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otmcvib1e03')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/73/c1/c1/73c1c1d9c70b04fa392736f8084e9396/73c1c1d9c70b04fa392736f8084e9396.1.jpg" alt="Thumb 3">
+        <h3>Eu fodo minha meia-irmã enquanto ela limpa o quarto </h3></div>
+          <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/klmddmva189')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/95/db/c7/95dbc72183423d340a6e9eaeaab90d3e/95dbc72183423d340a6e9eaeaab90d3e.19.jpg" alt="Thumb 4">
+         <h3>Título do Vídeo 4</h3></div>
+         <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ottlttbf478')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d8/57/10/d857109be06f2a4482c4914661af7755/d857109be06f2a4482c4914661af7755.21.jpg" alt="Thumb 5">
+        <h3>Eu fodo minha meia-irmã </h3></div>
+        <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otihepdcb45')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/42/2a/34/422a34dfe5db9f4f47e999dfbcb374d6/422a34dfe5db9f4f47e999dfbcb374d6.30.jpg" alt="Thumb 6">
+        <h3>Eu surpreendo minha meia-irmã deixando-a com muito tesão e foda</h3></div>
+        <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otdildk9bf4')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/9f/9e/b6/9f9eb64b715fae75f056cb3b74a209c5/9f9eb64b715fae75f056cb3b74a209c5.4.jpg" alt="Thumb 7">
+        <h3>Eu fodo minha madrasta quando eles a veem no chuveiro</h3></div>
+        <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otpptavbc3b')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/17/f0/4b/17f04b471c0ff1fd85820bc76d68fb4f/17f04b471c0ff1fd85820bc76d68fb4f.21.jpg" alt="Thumb 8">
+        <h3>Percebi que minha meia-irmã estava se divertindo com um vibrador e a ajudei a gozar.</h3></div>
+        <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uuvuopibf63')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/b8/33/fa/b833faeb02453b8f6caf24a037aefbac/b833faeb02453b8f6caf24a037aefbac.17.jpg" alt="Thumb 9">
+        <h3>Eu dou a minha meia-irmã uma boa foda- Cum na boca dela </h3></div>
+        <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uuapkui43f3')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/50/71/4d/50714d532dee5f3d7036a205c5345b26/50714d532dee5f3d7036a205c5345b26.25.jpg" alt="Thumb 10">
+        <h3>dou um bom boquete pro meu meio-irmão e ele goza na minha boca</h3></div>           
+  `;
+  break;
+        case 'explore':
+          html = `<h2>Explorar</h2><p>Descubra novos conteúdos.</p>`;
+          break;
+        case 'subscriptions':
+          html = `<h2>Inscrições</h2><p>Seus canais favoritos.</p>`;
+          break;
+        case 'library':
+          html = `<h2>Biblioteca</h2><p>Playlists e vídeos salvos.</p>`;
+          break;
+        case 'history':
+          html = `<h2>Histórico</h2><p>Seus vídeos assistidos recentemente.</p>`;
+          break;
+
+        // Categorias
+        case 'familia':
+  html = `
+    <h2>Família</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ubbvpmhf978')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/fd/52/1d/fd521dedeba7b2c1e7e77c1225ad2c5f/fd521dedeba7b2c1e7e77c1225ad2c5f.4.jpg" alt="Thumb Família 1">
+        <h3>Lulu Chu e Lauren Phillips mostram as melhores maneiras de resolver conflitos de famílias trocadas</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/khkicemc1fe')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/9f/08/e5/9f08e5e772e0721694f447c3b0b11a70-1/9f08e5e772e0721694f447c3b0b11a70.15.jpg" alt="Thumb Família 2">
+        <h3>A linda MILF asiática Sharon Lee e a enteada gostosa Jasmine Gray gostaram de compartilhar com o pau de enteados sortudos em uma sessão quente de sexo a três com a família adotiva</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kmeaipb7b09')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a9/bc/63/a9bc63e3a1629fecaf7bcc2d5c82ee70/a9bc63e3a1629fecaf7bcc2d5c82ee70.5.jpg" alt="Thumb Família 3">
+        <h3>Katie Kush, Mckenzie Lee Seus objetos de valor da família adotiva</h3>
+      </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohboeim184e')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/71/f6/14/71f614b30aca7e2d1d73dcd69a69d233/71f614b30aca7e2d1d73dcd69a69d233.5.jpg" alt="Thumb Família 4">
+        <h3>Minha meia-irmãzinha divide a cama: “Isso deveria ficar na família”</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hfueofk40a5')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/9f/88/e4/9f88e4412dee82f2a1e127cbd135d09b/9f88e4412dee82f2a1e127cbd135d09b.13.jpg" alt="Thumb Família 5">
+        <h3>a enteada do parceiro fica negra e o tabu da orgia da família adotiva</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ihfcvhv07fb')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/8f/12/a5/8f12a51e6dc3d94358943dced45dd84b/8f12a51e6dc3d94358943dced45dd84b.10.jpg" alt="Thumb Família 6">
+        <h3>Padrastos de família adotiva ao lado da cama</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/upbolik7a1a')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/78/9a/82/789a8232cd8b79f6c5bfd95632124a21/789a8232cd8b79f6c5bfd95632124a21.11.jpg" alt="Thumb Família 7">
+        <h3>Luna transa com o meio-irmão no natal, não tem presente melhor que esse para a família </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/iilmupd637a')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/29/a4/8a/29a48a5bd6d7708165eabce52decd2a0/29a48a5bd6d7708165eabce52decd2a0.19.jpg" alt="Thumb Família 8">
+        <h3>Padrasto de coração Estranho família adotiva Ciência do sexo</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uaefclb8c15')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/69/1e/06/691e060d1c30ee07a3ffc5dde5109ebd/691e060d1c30ee07a3ffc5dde5109ebd.22.jpg" alt="Thumb Família 9">
+        <h3>Os Skeets são uma típica família mesclada: amorosos, atenciosos e devotos às necessidades de uso gratuito uns dos outros</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kvolmmod17a')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/25/c2/9a/25c29a3aaf60baf97126cd3a45a88099-1/25c29a3aaf60baf97126cd3a45a88099.30.jpg" alt="Thumb Família 10">
+        <h3>Casos de familia! Marcela Schultz e Suzy Anderson disputam quem é a mais putinha safada da família [Parte 1] - Com vinny Burgos, Jack Kalahari, Eduardo Lima</h3>
+      </div>                              
+  `;
+  break;
+        case 'hardcore':
+  html = `
+    <h2>Hardcore</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uuvmfei49b5')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/91/73/bc/9173bcc8fd4d700c02b365538a4b2bed-8/9173bcc8fd4d700c02b365538a4b2bed.1.jpg" alt="Thumb Hardcore 1">
+        <h3>Casal hardcore fodendo</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kecupfb1250')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/89/de/5e/89de5eb2a90a70695fba8771704f3afc/89de5eb2a90a70695fba8771704f3afc.26.jpg" alt="Thumb Hardcore 2">
+        <h3>Sexo a três hardcore em</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kllelkkbcad')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d6/3e/91/d63e91d3076b5d2cdc3a3003cba90610-1/d63e91d3076b5d2cdc3a3003cba90610.14.jpg" alt="Thumb Hardcore 3">
+        <h3>PORRA INCONDICIONAL</h3>
+      </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ilkkiuva376')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/6b/06/79/6b0679182971965da1e9b12ad97d1719-2/6b0679182971965da1e9b12ad97d1719.29.jpg" alt="Thumb Hardcore 4">
+        <h3>Foda hardcore de ébano quente</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otpflmo3765')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/93/f2/ec/93f2ec85ae1f87863bf1935e3cf7d0c8/93f2ec85ae1f87863bf1935e3cf7d0c8.28.jpg" alt="Thumb Hardcore 5">
+        <h3>Anjos do Hardcore 3</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohaimlh37b9')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a6/f3/7f/a6f37fc686411223b2370818df8b375e/a6f37fc686411223b2370818df8b375e.13.jpg" alt="Thumb Hardcore 6">
+        <h3>Siri babe se despe para uma foda hardcore</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohbbuho7d13')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/79/d4/db/79d4db5d411db13be6f32284734d1e7b/79d4db5d411db13be6f32284734d1e7b.8.jpg" alt="Thumb Hardcore 7">
+        <h3>Sexo hardcore na mesa de escritório como nunca antes</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otfilvhf2f0')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/77/1f/35/771f35484f575551ed043306f56b4614/771f35484f575551ed043306f56b4614.19.jpg" alt="Thumb Hardcore 8">
+        <h3>Linda garota asiática conhece o ninja pervertido hardcore</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ueopaam8079')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/ce/61/60/ce61600fc6d78f87a42d038491fc9742/ce61600fc6d78f87a42d038491fc9742.11.jpg" alt="Thumb Hardcore 9">
+        <h3>SUPER HARDCORE ROUGH!!!!</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/oitumhh6ad6')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/15/45/8f/15458fce62fb966b299fab4532b39c36/15458fce62fb966b299fab4532b39c36.8.jpg" alt="Thumb Hardcore 10">
+        <h3>Romance no banheiro e sexo hardcore em estilo cachorrinho</h3>
+      </div>
+  `;
+  break;
+        case 'milf':
+  html = `
+    <h2>MILF</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohblphhf4c8')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d3/a7/35/d3a7355e5fc74b6de3cd832a045b7dc9/d3a7355e5fc74b6de3cd832a045b7dc9.6.jpg" alt="Thumb MILF 1">
+        <h3>SENTINDO PRAZER COM MINHA MADRASTA MILF</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhcveoh1a55')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/d7/bd/4c/d7bd4c5acc3f6c36ff070a19290e2b35/d7bd4c5acc3f6c36ff070a19290e2b35.3.jpg" alt="Thumb MILF 2">
+        <h3>Solteira MILF mostra seus seios ENORMES - MILFED</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uucfoftb222')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/34/86/56/348656d255d5816a982a6e7c968dbafe/348656d255d5816a982a6e7c968dbafe.4.jpg" alt="Thumb MILF 3">
+        <h3>Irmãos com tesão fodendo enquanto a mãe está lá fora</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhfaivf8fdc')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a7/84/e6/a784e6809d64aac3368b6a3375c949bd/a784e6809d64aac3368b6a3375c949bd.1.jpg" alt="Thumb MILF 4">
+        <h3>Duas freiras safadas se surpreendem com paus grandes e duros</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hvmkcuv834b')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/a1/67/b3/a167b35c332d87cc72a335cf07d02d4b/a167b35c332d87cc72a335cf07d02d4b.4.jpg" alt="Thumb MILF 5">
+        <h3>Brazzers - (Ryan Conner) - Milfs Like It Big</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uapltlo1a39')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d5/11/a2/d511a2c8b1b5db42db316fd334c6419d/d511a2c8b1b5db42db316fd334c6419d.11.jpg" alt="Thumb MILF 6">
+        <h3>Milf madrastas peitudas fodidas enquanto presas debaixo da minha cama - Amiee Cambridge e Cory Chase</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/vvaolhf3f4')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ad/dc/16/addc167bbc8ebc979098a2f52259ee6b-1/addc167bbc8ebc979098a2f52259ee6b.10.jpg" alt="Thumb MILF 7">
+        <h3>Sara Jay, mamãe peituda, faz tratamento facial</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uepdath0c33')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a5/46/8a/a5468a2c7a1d42292a1fd9ee18771ae7/a5468a2c7a1d42292a1fd9ee18771ae7.16.jpg" alt="Thumb MILF 8">
+        <h3>Exposição acidental da madrasta... aparentemente | FamPervs</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/keaucob7374')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/2c/43/04/2c4304c63beb47eb19354af3790cbf5a/2c4304c63beb47eb19354af3790cbf5a.6.jpg" alt="Thumb MILF 9">
+        <h3>Moms Teach Sex - Step Moms BFF Oh meu Deus, ele tem um tesão! S15: E10</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udhutlh8ed5')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/2a/03/b8/2a03b81d6da3c938a9341ca1e6af1faf/2a03b81d6da3c938a9341ca1e6af1faf.21.jpg" alt="Thumb MILF 10">
+        <h3>Latinas de peitos grandes compartilham um pau em um suculento sexo no sofá.</h3>
+      </div>    
+  `;
+  break;
+        case 'garotas_negras':
+  html = `
+    <h2>Garotas Negras</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ieeetihd9dc')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/bc/72/6a/bc726a8ac8aa997049cf70793b408071/bc726a8ac8aa997049cf70793b408071.30.jpg" alt="Thumb Negras 1">
+        <h3>linda garota negra chupa e e fodida com</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hpuotup9864')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/e4/07/bf/e407bfe2b7d5784dd87aad6c9f94106e/e407bfe2b7d5784dd87aad6c9f94106e.26.jpg" alt="Thumb Negras 2">
+        <h3>Linda garota negra com seios naturais</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ifccahm6599')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/e7/04/03/e7040342da1336dae31381f5e183b077/e7040342da1336dae31381f5e183b077.30.jpg" alt="Thumb Negras 3">
+        <h3>Garota negra peituda fodida no bangbus</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/edetp41df')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/f7/9f/b3/f79fb3291e67fa5322272c94a6ef1245-2/f79fb3291e67fa5322272c94a6ef1245.6.jpg" alt="Thumb Negras 4">
+        <h3>garota negra deslumbrante sendo fodida com força pelo reitor</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kkpapmb1b67')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/dd/ff/5a/ddff5a22e5d07e5cda7716704911d093/ddff5a22e5d07e5cda7716704911d093.29.jpg" alt="Thumb Negras 5">
+        <h3>Linda garota negra BBW fodida forte</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohbcflhc221')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/6d/81/cd/6d81cd52c4e2057c477025600c8b3e28/6d81cd52c4e2057c477025600c8b3e28.30.jpg" alt="Thumb Negras 6">
+        <h3>Jovem negra é fodida por dois policiais negros e grandões</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohmmmih8683')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/e2/52/f6/e252f63f866794371023ffd9164469d5-1/e252f63f866794371023ffd9164469d5.29.jpg" alt="Thumb Negras 7">
+        <h3>Sexo a três em resort nu – Ela se lubrifica e chupa dois paus grandes!</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kkfvelfd080')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/b0/64/39/b06439e8857d03beb77da47248ee6529/b06439e8857d03beb77da47248ee6529.30.jpg" alt="Thumb Negras 8">
+        <h3>Jordy Love, gostosa, é fodida por um pequenino branco</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kulpmff546c')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/00/96/af/0096affae8cc9ee7a033b5c69a60bd2b/0096affae8cc9ee7a033b5c69a60bd2b.30.jpg" alt="Thumb Negras 9">
+        <h3>Garota negra gostosa sendo fodida por um grande galo negro - pornografia negra</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kmeilbo1c92')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/16/c6/e4/16c6e44ab0fbb6bf83bb4ec27c330d29/16c6e44ab0fbb6bf83bb4ec27c330d29.30.jpg" alt="Thumb Negras 10">
+        <h3>Amadora negra gostosa é fodida como se não houvesse amanhã</h3>
+      </div>   
+  `;
+  break;
+        case 'doggystyle':
+  html = `
+    <h2>Doggystyle</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kdcveffa8f7')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/ae/19/04/ae1904e27f54e89868871f15c3e6372e/ae1904e27f54e89868871f15c3e6372e.3.jpg" alt="Thumb Doggystyle 1">
+        <h3>Doggystyle</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kpeppif444a')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/80/d0/f8/80d0f80b483a058218bfc2287db15046/80d0f80b483a058218bfc2287db15046.16.jpg" alt="Thumb Doggystyle 2">
+        <h3>Esposa chega em casa com uma bunda grande e é fodida com força</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ktivfeo4f49')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/df/38/b6/df38b607784c1bd8f7fbfb2ccd733e31/df38b607784c1bd8f7fbfb2ccd733e31.30.jpg" alt="Thumb Doggystyle 3">
+        <h3>Foda-me como uma puta !! Doggystyle!</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/khaepim34eb')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/24/26/46/242646fb4cb7347d9909198355ea2e22-1/242646fb4cb7347d9909198355ea2e22.27.jpg" alt="Thumb Doggystyle 4">
+        <h3>Doggystyle duro porra</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kecibafcc1c')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/63/6b/72/636b72bd1e4d82375b5a70004224f38b/636b72bd1e4d82375b5a70004224f38b.22.jpg" alt="Thumb Doggystyle 5">
+        <h3>Doggystyle diurno</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohviookc7c0')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/e7/47/db/e747db4c0049f0a9e77907ebe88efd21/e747db4c0049f0a9e77907ebe88efd21.10.jpg" alt="Thumb Doggystyle 6">
+        <h3>Sexo cachorrinho hardcore, apaixonado e profundo</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ufmdutk8a8b')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/34/63/f2/3463f2881eb948b85f8849550dec9da4/3463f2881eb948b85f8849550dec9da4.30.jpg" alt="Thumb Doggystyle 7">
+        <h3>Minha porra de proposta</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/umkcvdb0945')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/db/95/a5/db95a58bd480276d2da07042b6a008c0/db95a58bd480276d2da07042b6a008c0.18.jpg" alt="Thumb Doggystyle 8">
+        <h3>Doggystyle na bucetinha apertada</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udpfloh367e')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/f1/f5/18/f1f518e644f1abaafbf93754ba1660e2/f1f518e644f1abaafbf93754ba1660e2.22.jpg" alt="Thumb Doggystyle 9">
+        <h3>Doggysweet Fode BBC doggystyle</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uedoocdc6a9')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/09/6d/38/096d387d9ce17195c242e66b9ca2abdd-4/096d387d9ce17195c242e66b9ca2abdd.26.jpg" alt="Thumb Doggystyle 10">
+        <h3>Compilação Doggystyle</h3>
+      </div>
+  `;
+  break;
+        case 'big_dick':
+  html = `
+    <h2>Big Dick</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hpluuoe742e')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/82/98/76/8298765674852b1bde55b4fab72c7414/8298765674852b1bde55b4fab72c7414.19.jpg" alt="Thumb Big Dick 1">
+        <h3>Dick muito grande para este</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hoetkvh93fc')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/e6/01/79/e601795e67b06b66a300e842dff1cca2/e601795e67b06b66a300e842dff1cca2.7.jpg" alt="Thumb Big Dick 2">
+        <h3>Mia Khalifa espancada por Big Black Quarterback Dick</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kbpldlmab10')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/6b/07/46/6b07461501c2efd09f7abbc1a03bc047/6b07461501c2efd09f7abbc1a03bc047.28.jpg" alt="Thumb Big Dick 3">
+        <h3>Big Dick Stanley Long é fodido pelo mini garanhão Big Dick Slayher</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hacaavbc216')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/6c/b8/6b/6cb86b9a148116dafeaa412c2be41afb/6cb86b9a148116dafeaa412c2be41afb.5.jpg" alt="Thumb Big Dick 4">
+        <h3>BANGBROS Big Booty Masseuse Skyler Luv destruída por Black Dick (mc13938)</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kcikhmm5b75')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/46/a0/81/46a08160751e4b7c49da07b40515aba7/46a08160751e4b7c49da07b40515aba7.21.jpg" alt="Thumb Big Dick 5">
+        <h3>Big Dick fode asiático no hotel Bellagio</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uomeohp5cf1')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/56/5d/0b/565d0b2445f90819708894bc8330b811/565d0b2445f90819708894bc8330b811.19.jpg" alt="Thumb Big Dick 6">
+        <h3>Big Black Dick Guy consegue coloridos para usá-los gratuitamente - Fuckanytime</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uomillk6e09')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/80/f3/af/80f3affd94df82158d14a25119a5a2f8/80f3affd94df82158d14a25119a5a2f8.28.jpg" alt="Thumb Big Dick 7">
+        <h3>Duas safadinhas aproveitando do cliente que foi no salão fazer a barba, casal porra loka</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohvleeha84c')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/b6/23/00/b6230051972604f8263da03e791c687d/b6230051972604f8263da03e791c687d.15.jpg" alt="Thumb Big Dick 8">
+        <h3>A gostosa peituda Hailey Rose é fodida como uma boneca de pano pelo pau grande JMac</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/lfcuhf90ec')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/0c/bb/5a/0cbb5af6a23ed0521b04f11a020b2e1b/0cbb5af6a23ed0521b04f11a020b2e1b.11.jpg" alt="Thumb Big Dick 9">
+        <h3>O primeiro Pau Preto Grande de Sofie 1</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uphbvvo0108')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ab/b6/1c/abb61c987483e088483bc3c1307cf77d/abb61c987483e088483bc3c1307cf77d.30.jpg" alt="Thumb Big Dick 10">
+        <h3>Big Dick Blackstar fode grande bunda linda spanishbarbiie</h3>
+      </div>     
+  `;
+  break;
+        case 'bunda_grande':
+  html = `
+    <h2>Bunda Grande</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohbhuvv9df2')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/64/19/fb/6419fb573f202d86d77fe794e3f43d27/6419fb573f202d86d77fe794e3f43d27.26.jpg" alt="Thumb Bunda Grande 1">
+        <h3>Eu comi a bunda suada dela depois da academia, bunda gorda, latina, cacheada e riquenha </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohcfuphb000')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/fe/41/c3/fe41c3882a7d57316b033fdb6e2b6efb/fe41c3882a7d57316b033fdb6e2b6efb.3.jpg" alt="Thumb Bunda Grande 2">
+        <h3>A esposa indiana de bunda grande fica realmente excitada enquanto cozinha</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hoecitv8142')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/80/9f/5e/809f5e24cf7ce082f3b1ae4ba7c7087d-1/809f5e24cf7ce082f3b1ae4ba7c7087d.22.jpg" alt="Thumb Bunda Grande 3">
+        <h3>Latina amadora de saque grande pulando no pau</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ottpaeoa8a2')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/56/51/83/56518354017bf2fc8bcb776c7e8cfa87/56518354017bf2fc8bcb776c7e8cfa87.29.jpg" alt="Thumb Bunda Grande 4">
+        <h3>Latina novinha cavalga com a sua bunda grande</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ulbiadk9aa2')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/93/cc/bb/93ccbbbcee3d34e24792a537af8c027f/93ccbbbcee3d34e24792a537af8c027f.29.jpg" alt="Thumb Bunda Grande 5">
+        <h3>Precisando de Big Ass Johnny Love, Jenna Starr</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/otohaih3345')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/b3/a3/47/b3a34743be4180763f394700bd1c9203/b3a34743be4180763f394700bd1c9203.30.jpg" alt="Thumb Bunda Grande 6">
+        <h3>Meu tio me fudeu no banho com seu pau grande e gozou dentro</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hdvtupm56bb')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/9d/b7/60/9db76022c1d2530c225da9ebb87cf827-2/9db76022c1d2530c225da9ebb87cf827.27.jpg" alt="Thumb Bunda Grande 7">
+        <h3>Lexi Amor Gets Her Holes Dug In-trailer</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hakicaoce2e')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/66/60/42/666042007828e1849ab0d18033e09c81-1/666042007828e1849ab0d18033e09c81.21.jpg" alt="Thumb Bunda Grande 8">
+        <h3>Latina de bunda grande com orla</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ihhaemdd583')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a9/58/12/a95812cf95fed3c293b2dcb7fff8d165/a95812cf95fed3c293b2dcb7fff8d165.22.jpg" alt="Thumb Bunda Grande 9">
+        <h3>Trio hardcore de bunda grande</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ieomlkb4e69')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/24/fa/8c/24fa8c041dea83b496f243cbd0ea44f9/24fa8c041dea83b496f243cbd0ea44f9.2.jpg" alt="Thumb Bunda Grande 10">
+        <h3>BANGBROS - Juan El Caballo Loco faz um tour pelo campus de Daisy Stone</h3>
+      </div>
+  `;
+  break;
+        case 'latina':
+  html = `
+    <h2>Latina</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hmofbtk6456')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d9/04/b1/d904b195265321f86991da7f9170df38-1/d904b195265321f86991da7f9170df38.13.jpg" alt="Thumb Latina 1">
+        <h3>Babá latina enlouquecida</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kfkcltk45d5')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/35/dc/ad/35dcade0aed66bafb180a0cf37d52c5f/35dcade0aed66bafb180a0cf37d52c5f.22.jpg" alt="Thumb Latina 2">
+        <h3>Coloque se quiser, é para isso que servem as StepSisters</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udhuihm55a5')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/dd/38/80/dd3880240995497d579745f9dcbe343c/dd3880240995497d579745f9dcbe343c.20.jpg" alt="Thumb Latina 3">
+        <h3>A madrasta MILF Alexis Malone abraça o enteado e ele enfia o pau dentro</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uvbuold90fd')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/54/e3/96/54e3967c0388d4236d692147222ecc18/54e3967c0388d4236d692147222ecc18.11.jpg" alt="Thumb Latina 3">
+        <h3>Enteado encontra madrasta peituda pelada</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uvkiuakc6aa')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/5e/78/cb/5e78cbcce19c74b165ce5af7bd8dd758/5e78cbcce19c74b165ce5af7bd8dd758.30.jpg" alt="Thumb Latina 4">
+        <h3>Bonita jovem espanhola Sabrina USADA em seu dormitório à noite</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ubuvfvv9771')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/3d/3e/06/3d3e062551c9b78f9d1472e1564898d4-1/3d3e062551c9b78f9d1472e1564898d4.30.jpg" alt="Thumb Latina 5">
+        <h3>Madrasta gostosa ajuda seu enteado a estudar enquanto toca seus seios</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uldtbeb84a1')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/41/12/ec/4112ec8c107868550ea4bd0db29f3c16/4112ec8c107868550ea4bd0db29f3c16.20.jpg" alt="Thumb Latina 6">
+        <h3>ADULT TIME - Stepsis Eliza Ibarra fode acidentalmente seu Stepbro! CENA COMPLETA</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kuuchbo0904')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/61/20/80/612080fe3f3c34d381a4a9680784f9b1/612080fe3f3c34d381a4a9680784f9b1.18.jpg" alt="Thumb Latina 7">
+        <h3>La Guarra Mexicana Branca de Neve Helena Danae </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ufdulih5781')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/9e/6e/c3/9e6ec31f369e5d845ceb101feeb04de3/9e6ec31f369e5d845ceb101feeb04de3.28.jpg" alt="Thumb Latina 8">
+        <h3>Professor de sinuca empurrando seu taco grande em duas latinas gostosas e peitudas - Yenifer Chacon, FilouFitt e Annistar</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uieifph03ea')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ea/a4/3e/eaa43ede0c54c25a06c498850e931ef3-1/eaa43ede0c54c25a06c498850e931ef3.13.jpg" alt="Thumb Latina 9">
+        <h3>PECADOS DO DIA MODERNO - nervoso fode a PASTA QUENTE de seu valentão Natasha Nice! TITINHAS GRANDES SALTANTES!</h3>
+      </div>     
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohkollb7e36')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ab/76/af/ab76af953fe92eced554102eda92a1d9/ab76af953fe92eced554102eda92a1d9.25.jpg" alt="Thumb Latina 10">
+        <h3>Ruby Moon desafia o enteado: "Se você me fizer gozar, eu deixo você me foder" - T34:E10</h3>
+      </div>
+  `;
+  break;
+        case 'nigeria':
+  html = `
+    <h2>Nigéria</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uptpvaffa85')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/81/72/ec/8172ec48fb74d3349cb68d689765fee5/8172ec48fb74d3349cb68d689765fee5.30.jpg" alt="Thumb Nigéria 1">
+        <h3>Foda-se meu bumbum</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ulpoeboceda')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/cf/ee/64/cfee6481437390e42c6f9eed732f9056/cfee6481437390e42c6f9eed732f9056.22.jpg" alt="Thumb Nigéria 2">
+        <h3>as garotas da faculdade pegaram o professor de pau grande se masturbando em seu escritório e depois foderam sua boceta apertada enquanto esguichavam por toda a mesa. Assista partes quentes completas no RED</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uatvvom62c8')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/fb/c5/2e/fbc52e570926f10c46cb4ecbe3c6c9d0/fbc52e570926f10c46cb4ecbe3c6c9d0.22.jpg" alt="Thumb Nigéria 3">
+        <h3>NIGERIAN SEXY EBONY BEAUTY CREAMPIOU NA MINHA BBC PORQUE ELA GOSTOU DO MEU PAU</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/upbhtiv27d7')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/be/eb/f5/beebf535d9b70b9d8246654d0139809a/beebf535d9b70b9d8246654d0139809a.24.jpg" alt="Thumb Nigéria 4">
+        <h3>VAGABUNDA DO NORTE CAVALGANDO E FODENDO ABA BOY PAU GRANDE</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohvffch3139')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d3/34/6c/d3346cec0300209be4abf19ad0a03c06/d3346cec0300209be4abf19ad0a03c06.30.jpg" alt="Thumb Nigéria 5">
+        <h3>(MDX) NEGRO AFRICANO VILÃO FODIDO COM FORÇA ANTES DE SAIR PARA A ESCOLA</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/umaiefub504')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/c9/2f/4d/c92f4d1d8f0f3a0333b57896f152b56d/c92f4d1d8f0f3a0333b57896f152b56d.29.jpg" alt="Thumb Nigéria 6">
+        <h3>Ela fodeu o pau enorme que ela estava admirando depois de ver seu pau grande pela primeira vez</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uteickk56ca')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/04/fc/6a/04fc6a3cb013545a1ac0629cb5724470-1/04fc6a3cb013545a1ac0629cb5724470.21.jpg" alt="Thumb Nigéria 7">
+        <h3>desculpe garçom, mas você tem que foder minha buceta por favor</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uaufiik4693')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/55/30/5b/55305be24f64c2258851a0c3da252784/55305be24f64c2258851a0c3da252784.16.jpg" alt="Thumb Nigéria 8">
+        <h3>EMEKA POR QUE</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ucdikcv2fe7')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/0e/3f/b9/0e3fb9df49f98fd3b5e152298d6c1be7/0e3fb9df49f98fd3b5e152298d6c1be7.1.jpg" alt="Thumb Nigéria 9">
+        <h3>Adoráveis africanos curtindo bons BBCs em casa.</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uftitpbb7d5')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/89/3b/b2/893bb26c681b6f350f43a8d84170b98b/893bb26c681b6f350f43a8d84170b98b.13.jpg" alt="Thumb Nigéria 10">
+        <h3>Duas alunas taradas fodem o professor da turma na sala dele</h3>
+      </div>
+  `;
+  break;
+        case '18':
+  html = `
+    <h2>18</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohicdco4630')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/9a/ad/69/9aad698e5729ed6a7bc20a21c35715af/9aad698e5729ed6a7bc20a21c35715af.30.jpg" alt="Thumb 18 1">
+        <h3>JOVEM E ARRUINADA - Ela acabou de fazer 18 anos</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hvcebpk1551')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/5c/0c/91/5c0c91961240915a964e5ac8863bb2e7-1/5c0c91961240915a964e5ac8863bb2e7.7.jpg" alt="Thumb 18 2">
+        <h3>Petite Teen encontra-se com um cara da Internet</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uamvibf6cdc')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/bf/fe/0e/bffe0e0b0c00e5bfaecd3bd492034711/bffe0e0b0c00e5bfaecd3bd492034711.30.jpg" alt="Thumb 18 3">
+        <h3>18 Yo Cutie serve como Cumdumpster submisso</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohmcefd1fb2')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d3/4e/d5/d34ed59842f2c178934a640a53c72855/d34ed59842f2c178934a640a53c72855.26.jpg" alt="Thumb 18 4">
+        <h3>Colega de quarto de 18 anos cavalga pau sem parar </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ecdcbo6416')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a9/74/77/a9747740c45c6d76520b53d3e9326d5d-1/a9747740c45c6d76520b53d3e9326d5d.13.jpg" alt="Thumb 18 5">
+        <h3>magro é fodido com força!</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/obluifc559')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d3/c9/6b/d3c96ba248d5b0c3aa59c4c9c55d21c5-1/d3c96ba248d5b0c3aa59c4c9c55d21c5.2.jpg" alt="Thumb 18 6">
+        <h3>ruivo de 18 anos fodendo profundamente</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hocaclh7775')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/09/f2/ea/09f2eae45c538b3ef66ddbf9bd8babdd/09f2eae45c538b3ef66ddbf9bd8babdd.27.jpg" alt="Thumb 18 7">
+        <h3>Old Goes Young - Luna Rival é fodida enquanto aspira o tapete</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/heutlem3c7f')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/af/6d/43/af6d430d080db49f1cda7952fc98401f-2/af6d430d080db49f1cda7952fc98401f.15.jpg" alt="Thumb 18 8">
+        <h3>Oficial Bangs Sweet Teen Thief</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kaudcim4b60')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/97/c5/96/97c596b9351cf8b1460f6a2a11ecff86/97c596b9351cf8b1460f6a2a11ecff86.2.jpg" alt="Thumb 18 9">
+        <h3>Deliciosa Anita Teen</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uctvdcm9ee0')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/4d/ee/03/4dee035fa4613b5b981c7cfde5807ca0/4dee035fa4613b5b981c7cfde5807ca0.30.jpg" alt="Thumb 18 10">
+        <h3>CARNE - vagabunda universitária agredida por seu professor de matemática</h3>
+      </div>      
+  `;
+  break;
+        case 'japonese':
+  html = `
+    <h2>Japanese</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ucooaek071f')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/3f/6e/89/3f6e89c7a2e32297f0677a502ce93f0a/3f6e89c7a2e32297f0677a502ce93f0a.30.jpg" alt="Thumb Japanese 1">
+        <h3>Nova Casa Novas Regras Brooke Barclays, Lulu Chu, Pierce Paris</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udumdud01d2')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/31/8d/b4/318db4288d34a043fa26dc7a37b626dd/318db4288d34a043fa26dc7a37b626dd.21.jpg" alt="Thumb Japanese 2">
+        <h3>Tatuagem por linda garota asiática</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udkbldh3f43')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d9/0d/76/d90d760c500c424c58489d89b2cdc9f7/d90d760c500c424c58489d89b2cdc9f7.24.jpg" alt="Thumb Japanese 3">
+        <h3>Professor de Mianmar quer foder sexo apressado antes da escola</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udekfavf807')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/4d/b3/49/4db34991c4db379ea7b05bebef27842f/4db34991c4db379ea7b05bebef27842f.30.jpg" alt="Thumb Japanese 4">
+        <h3>Usando minha madrasta sempre que eu quiser - Cncmilf</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hefhmtk1ab5')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/79/f9/a9/79f9a96c035e73309abb0e4a7acee827/79f9a96c035e73309abb0e4a7acee827.12.jpg" alt="Thumb Japanese 5">
+        <h3>madrasta japonesa mãe e filho pela primeira vez</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hefhodv3b4b')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ff/95/0a/ff950af3df4dd74eb431fd62629790cb/ff950af3df4dd74eb431fd62629790cb.22.jpg" alt="Thumb Japanese 6">
+        <h3>A madrasta asiática japonesa adora foder com</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hefhplv2ff0')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/c8/af/c8/c8afc89d0b6451186a40674783ae5070-1/c8afc89d0b6451186a40674783ae5070.13.jpg" alt="Thumb Japanese 7">
+        <h3>madrasta japonesa mãe e filho primeiro sexo</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kdtiabv9c57')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/dc/0e/30/dc0e30992ee396b59724d09fadce54fe/dc0e30992ee396b59724d09fadce54fe.30.jpg" alt="Thumb Japanese 8">
+        <h3>Mazee, a cabra, está frustrada com a namorada e a trai com (Mina Moon, Sofia Su) - Brazzers</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ihteaddd659')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/8c/ac/e5/8cace5a6e00cebbf4d6d4ea2ef1f01cc/8cace5a6e00cebbf4d6d4ea2ef1f01cc.30.jpg" alt="Thumb Japanese 9">
+        <h3>BANGBROS - Asian Sensation Asa Akira tem um pau grande e preto em sua buceta pequena</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/keeablo671b')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/be/5f/f1/be5ff1b23c91d65dd61b4727fe86ed36/be5ff1b23c91d65dd61b4727fe86ed36.2.jpg" alt="Thumb Japanese 10">
+        <h3>Amigável vizinho Myles Long deixa um pacote de entrega na casa de Sofia Su</h3>
+      </div>     
+  `;
+  break;
+        case 'incesto':
+  html = `
+    <h2>Incesto</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ubmlhvfe218')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/a1/11/4d/a1114d96ccb43b149442b6678f219305/a1114d96ccb43b149442b6678f219305.22.jpg">
+        <h3>Sobrinha fica surpresa ao ver o tio andando nu pela casa. </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kefitmk756a')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a5/0b/4c/a50b4c86173f24a6b691ec58a8b21fb8/a50b4c86173f24a6b691ec58a8b21fb8.5.jpg">
+        <h3>Jogando videogame sentado nas pernas de seu tio pervertido em lei</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uupcufl7c90')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/8a/72/e6/8a72e654317a225a665d8ac0ba12ab31/8a72e654317a225a665d8ac0ba12ab31.10.jpg">
+        <h3>Eu comi minha cunhada pensando que ela era minha namorada porque elas são gêmeas </h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uotppluab25')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/79/97/dd/7997dd720b06a4a1af72ff70f7f99537/7997dd720b06a4a1af72ff70f7f99537.7.jpg">
+        <h3>Apalpando minha sobrinha que brinca sentada nas minhas pernas escondida de seus pais</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uipkbto9087')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/a5/93/24/a593246b7ff6034bc177ad1afa0b2a6d/a593246b7ff6034bc177ad1afa0b2a6d.30.jpg">
+        <h3>Beleza com tesão fica romântica com seu avô (Laney Grey, Jay Crew)</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kbccmdvba03')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/f9/97/40/f99740052fe2c75ea288bbd166d43d3a/f99740052fe2c75ea288bbd166d43d3a.14.jpg">
+        <h3>SHAME4K. A avó morena resolve seu problema fazendo sexo com um cara</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udmvevkb7ed')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/2d/f4/3e/2df43ec695eba9a50ab2428ff4ae32a4/2df43ec695eba9a50ab2428ff4ae32a4.8.jpg">
+        <h3>Avó peituda está com fome de pau</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/huepvpbe580')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/36/e7/a9/36e7a94656da4987c3c654afd3bb11be/36e7a94656da4987c3c654afd3bb11be.9.jpg">
+        <h3>Uma jovem russa chupa o osso de um velho avô</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ucfhcih077c')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/85/a7/2d/85a72decf9de798e678379d450fd4a7a/85a72decf9de798e678379d450fd4a7a.27.jpg">
+        <h3>A massagem nos pés da tia terminou com gozada na calcinha</h3>
+      </div>    
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/keeatav2d08')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/8f/2d/25/8f2d25886263cf15fcb7ccffaeaa6bb9/8f2d25886263cf15fcb7ccffaeaa6bb9.25.jpg">
+        <h3>Meu marido mostrou meus vídeos para o sobrinho dele, e como vingança eu transei com o sobrinho</h3>
+      </div>
+  `;
+  break;
+        case 'lesbica':
+  html = `
+    <h2>Lésbica</h2>
+    <div class="thumb-grid">
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ohumovb6f20')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/7a/e5/b5/7ae5b5abfd1b0ad26fc3263fc1155bd5/7ae5b5abfd1b0ad26fc3263fc1155bd5.13.jpg">
+        <h3>Latinas tímidas de 18 anos experimentam brincadeira lésbica pela primeira vez</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hfdlvekc966')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/e1/77/ff/e177ff113bc5815d9e84222e12649bbf/e177ff113bc5815d9e84222e12649bbf.25.jpg">
+        <h3>Festas lésbicas do PJ - estrelas pornôs americanas de pijama</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kddfukbe7c6')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/30/f6/67/30f667894db919dec87e58e117ba4b7e/30f667894db919dec87e58e117ba4b7e.22.jpg">
+        <h3>Garçonete de narguilé lambeu minha buceta - Lesbian Illusion Girls</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/bkatdf0517')">
+        <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/a2/22/4a/a2224a67d4b6b8e390d19a7cc18060b3-1/a2224a67d4b6b8e390d19a7cc18060b3.12.jpg">
+        <h3>Milf britânico pussylicking lez antes da diversão ffm</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ematomca8a')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/5a/2c/79/5a2c795bcf9872b405be10d0332f0d04/5a2c795bcf9872b405be10d0332f0d04.14.jpg">
+        <h3>Lesbos adoráveis e fofas se divertem na câmera vid-12</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ihbvoib0ad7')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/8f/55/6e/8f556e2c5070f9b3b02b2b13dfadc47d/8f556e2c5070f9b3b02b2b13dfadc47d.27.jpg">
+        <h3>Lesbo: Elisa Sanches e Monica Lima</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kfddichf4bf')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/4a/e0/01/4ae001a681bbc4c96ac2efa4baf0dfbf/4ae001a681bbc4c96ac2efa4baf0dfbf.11.jpg">
+        <h3>lésbicas gostosas vadias</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ltpmam7cdc')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/85/1c/78/851c78cd208e83645f620b38388b477b-1/851c78cd208e83645f620b38388b477b.14.jpg">
+        <h3>Real lésbica linda sendo lambida</h3>
+      </div>
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/bhihpdbbd2')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/db/a0/24/dba0242a1bdcaae86fb2e909ab9d709d-1/dba0242a1bdcaae86fb2e909ab9d709d.3.jpg">
+        <h3>Gamer lésbica Shyla Jennings</h3>
+      </div> 
+      <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hlkoiiv32a4')">
+        <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/30/92/a1/3092a11d5e48c31fed26d39f5a01880f/3092a11d5e48c31fed26d39f5a01880f.8.jpg">
+        <h3>Gamer Dreamin Play n Fuck</h3>
+      </div>     
+  `;
+  break;
+        case 'stepsis':         
+ html = `
+    <h2>stepsis</h2>
+    <div class="thumb-grid">
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kfdfioo78d2')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a5/01/a5/a501a50cd1f367240ced7765b3b5ae64/a501a50cd1f367240ced7765b3b5ae64.14.jpg">
+      <h3>Em tempos de Covid, máscara mais importante que muffin para Stepsis</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/idiecdf1627')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/64/cd/df/64cddf20a5b8cc5f2603f8bb49262740/64cddf20a5b8cc5f2603f8bb49262740.22.jpg">
+      <h3>My Stepsis April Fools rPrank Makes Me Cum Inside her S3: E4 </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hefuduo881c')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/3d/dc/ca/3ddccac63a6c77339bc8678989c8bb6a/3ddccac63a6c77339bc8678989c8bb6a.11.jpg">
+      <h3>StepSis Bratty - StepSister quer meu pau enquanto a madrasta está perto! S2:E11 </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kuhmbtk9057')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/63/e7/18/63e718ca06257934d2f1febf15aa3f27/63e718ca06257934d2f1febf15aa3f27.2.jpg">
+      <h3>Stepsis "Estou nu, isso faz você se sentir estranho?" Porra para o beliche de cima </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/klkltok0336')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/80/e8/9c/80e89c906b9650915c8be15c9a8ba6f2-1/80e89c906b9650915c8be15c9a8ba6f2.13.jpg">
+      <h3>Irmã malcriada - Pervy StepSis Loves My April Fools Sex Games S4: E11 (Legendado) </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hpfoctkb0e3')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/4d/b9/ff/4db9ff1a91fc5e3d0aabdd5c504f8192-2/4db9ff1a91fc5e3d0aabdd5c504f8192.2.jpg">
+      <h3>Meia-irmã agredida</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kioaobd2061')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/95/1c/fa/951cfaa3e674d7445e07050d1bd75e33-1/951cfaa3e674d7445e07050d1bd75e33.21.jpg">
+      <h3>19yo stepis ensina stepbro a foder</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uukitdk18d5')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/1f/e4/d1/1fe4d1493688c36167758c339709cd83-1/1fe4d1493688c36167758c339709cd83.30.jpg">
+      <h3>My Step Sister Thought Mom Wasn't Home - Milfed</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kfaouoh27ca')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/ff/b3/b4/ffb3b465482da14ef3f09e78f83598d9/ffb3b465482da14ef3f09e78f83598d9.4.jpg">
+      <h3>Meio-irmão fica excitado depois de assistir a meia-irmã se masturbando na frente dele</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ucukopbcb5f')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ca/c0/e8/cac0e8963bc222f8ace27b0af7b547a2/cac0e8963bc222f8ace27b0af7b547a2.19.jpg">
+      <h3>Sexo matinal com minha meia-irmã</h3>
+    </div>
+  </div>
+  `;
+ break;
+          
+        case 'stepmom':
+          html = `
+    <h2>stepmom</h2>
+    <div class="thumb-grid">
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uipptdfbf34')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/0d/b8/08/0db8082c8bb9c6a8f3b187556c90ded0/0db8082c8bb9c6a8f3b187556c90ded0.29.jpg">
+      <h3>COMEÇO DA SEMANA - STEPMOM SLUTTY</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kkkthhd8aac')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/63/92/96/6392962d4002cc734cda15b90805eca9/6392962d4002cc734cda15b90805eca9.4.jpg">
+      <h3>enteado seduzido madrasta</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/komauiofae9')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/a9/c4/f7/a9c4f7a327db822d635a0c2b8f4aa880-1/a9c4f7a327db822d635a0c2b8f4aa880.16.jpg">
+      <h3>Perv enteado tira vantagem de sua madrasta peituda MILF</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhalubfde9e')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/ba/78/5d/ba785d5a5290bbc0383a9599b8c8f922/ba785d5a5290bbc0383a9599b8c8f922.7.jpg">
+      <h3>PervMom - A madrasta está chateada com o jantar queimado e se anima com a ereção do enteado</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhobbok451f')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/0c/7a/e0/0c7ae0808ef3b64e5588c4cf31eb73ac-1/0c7ae0808ef3b64e5588c4cf31eb73ac.30.jpg">
+      <h3>Eu Transei Acidentalmente com A MÃE Da Minha Namorada - MILFED</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/utedmtm9ccb')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/91/ca/7f/91ca7f8d6cfedda8f20136ec072f3535/91ca7f8d6cfedda8f20136ec072f3535.30.jpg">
+      <h3>Fodendo minha madrasta ao lado do meu pai - MILFED </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhhaveb9407')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/cb/ec/4d/cbec4d5a5c6fdfff60840f42ecbf676e/cbec4d5a5c6fdfff60840f42ecbf676e.30.jpg">
+      <h3>madrasta flagrada transando com o namorado - MILFED</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uafvmphceb1')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/7a/5a/f0/7a5af0daba24ab87f1419b46e672e549/7a5af0daba24ab87f1419b46e672e549.18.jpg">
+      <h3>Perv Madrasta faz com que sua enteada briguenta e seu enteado usem uma calcinha grande juntos</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uukitdk18d5')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/1f/e4/d1/1fe4d1493688c36167758c339709cd83-1/1fe4d1493688c36167758c339709cd83.30.jpg">
+      <h3>My Step Sister Thought Mom Wasn't Home - Milfed</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/utedpama2a1')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/58/37/1a/58371a5358d7334b9710819980f5d115/58371a5358d7334b9710819980f5d115.30.jpg">
+      <h3>Pegando minha madrasta negra enquanto conversava com o marido dela - MILFED</h3>
+    </div>
+  </div>
+  `;
+ break;
+        case 'cosplay':
+          html = `
+    <h2>cosplay</h2>
+    <div class="thumb-grid">
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uaefmpda95e')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/6a/a4/44/6aa444491782e604a98d4cbd2a869c4d/6aa444491782e604a98d4cbd2a869c4d.29.jpg">
+      <h3>Mavis fode apaixonadamente e faz tratamento facial - Cosplay no Hotel Transilvânia</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/klbacod60b8')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/e6/d7/50/e6d750115ade0695c1b351195ba99b38-2/e6d750115ade0695c1b351195ba99b38.29.jpg">
+      <h3>Tesão Em Marinheiro Cosplay Lua Suga Apaixonadamente Profunda Galo Para Cum No Rosto</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhdimbhbab1')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/34/40/ea/3440eafc2210863232cea63f1085be09-1/3440eafc2210863232cea63f1085be09.1.jpg">
+      <h3>Viúva Preta Fez Tortura Doce Para O Russo Ivan, Sugado E Deu Foda Buraco Anal - Cosplay De Marvel </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uambkdka3a9')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d2/5e/5d/d25e5dbcea57949609695725a8857678/d25e5dbcea57949609695725a8857678.24.jpg">
+      <h3>Compilação dos novos vídeos mais quentes de Sweetie Fox!</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/othkovf9691')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/03/b7/5f/03b75f376bc710a17a2e9308ce4be8f4/03b75f376bc710a17a2e9308ce4be8f4.13.jpg">
+      <h3>Fodida e gozada na barriga da bebê Judy Hopps! Cosplay</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ueukvth4aa2')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/98/12/09/9812096ff50d87e1271aef41e31b6327/9812096ff50d87e1271aef41e31b6327.2.jpg">
+      <h3>Freira safada</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kffvdibe97c')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/be/ca/a0/becaa08419a304c12bc19f328f647b79/becaa08419a304c12bc19f328f647b79.10.jpg">
+      <h3>Uma linda garota em uma fantasia de anjo rosa vem com vibrador e meu pau!</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/hitbalo916c')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/b9/ce/13/b9ce13cdafedee24cb42f374165d4b61/b9ce13cdafedee24cb42f374165d4b61.29.jpg">
+      <h3>universitário obtém anal pela primeira vez com professor safado</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kcbamdkdb3f')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/f2/46/d7/f246d7d9c795b101793e540b603039d8/f246d7d9c795b101793e540b603039d8.30.jpg">
+      <h3>O melhor de Mizuki em Mirai Akari Cosplay</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/udkpebd4379')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/f2/45/c4/f245c4b82f002d2363ef5d3a672b8a69/f245c4b82f002d2363ef5d3a672b8a69.9.jpg">
+      <h3>Madrasta dá pílulas de Viagra ao enteado por engano e agora tem que transar com ele para acabar com o tesão</h3>
+    </div>
+  </div>
+  `;
+ break;
+        case 'escola':
+          html = `
+    <h2>escola</h2>
+    <div class="thumb-grid">
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ulefvkh2a9c')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/51/e9/f4/51e9f4425b2ee34a63ea4d3e3447ccee/51e9f4425b2ee34a63ea4d3e3447ccee.28.jpg">
+      <h3>MEU ALUNO ME DEU UM PRESENTE DE ANIVERSÁRIO </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uvoacufe36f')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/ea/f2/47/eaf247da878334de58067d195e712b72/eaf247da878334de58067d195e712b72.13.jpg">
+      <h3>Espionando um professor da Universidade Católica do Chile</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uhmmbuoa9dd')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/58/26/41/58264161135374e54f977472e8740737/58264161135374e54f977472e8740737.26.jpg">
+      <h3>Fodendo com minha professora de inglês / Kristal Bridge</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ucfteum9e12')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/79/e2/dd/79e2dd329ae5db984720b031ddfe15d4/79e2dd329ae5db984720b031ddfe15d4.20.jpg">
+      <h3>Professora MILF fode aluna do pau grande na sala de aula, acaba com porra na boca! Carla Morelli</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/uftimvf0dd0')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/f3/3d/d1/f33dd12263b6c18c48d09e595c02ef56/f33dd12263b6c18c48d09e595c02ef56.30.jpg">
+      <h3>Professora MILF seduz seu novo aluno jovem </h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ibalbvb3a3c')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/d4/02/ca/d402ca436ab7f72eaaeef9571a80196f/d402ca436ab7f72eaaeef9571a80196f.11.jpg">
+      <h3>PURE TABOO Professor Michael Vegas' Dark Fixation Com 18yo Virgin Student Carolina Sweets</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/aamlto8170')">
+      <img src="https://gcore-pic.xvideos-cdn.com/videos/thumbs169lll/d2/2e/7a/d22e7af3d1467c22a8b750b4b4cb5a2e-1/d22e7af3d1467c22a8b750b4b4cb5a2e.6.jpg">
+      <h3>Professora muito sexy Bridgette B. foda-se na sala de aula</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/kblmea81c2')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/8e/9f/d2/8e9fd2b0c4b28985debb0262e646a912-2/8e9fd2b0c4b28985debb0262e646a912.9.jpg">
+      <h3>Aluna gostosa implora a professora para parar de apalpar seus peitos</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/iapiheace1')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/e6/ef/c9/e6efc9f6e795bd4caf767c03281be140-1/e6efc9f6e795bd4caf767c03281be140.17.jpg">
+      <h3>Inocêncio alto tesão loira Heather Starlet fodida professora</h3>
+    </div>
+    <div class="thumb" onclick="showVideoPage('https://www.xvideos.com/embedframe/ubalifbafb5')">
+      <img src="https://cdn77-pic.xvideos-cdn.com/videos/thumbs169lll/48/79/30/487930463dc7e11c7392f64761823ccf/487930463dc7e11c7392f64761823ccf.12.jpg">
+      <h3>PURE TABOO A estudante inocente Leana Lovings tenta seduzir o professor ameaçador para o sexo</h3>
+    </div>
+  </div>
+  `;
+ break;
+          case 'hentai':
+  html = `<h2>Hentai</h2><p>Vídeos da categoria Hentai.</p>`;
+  break;
+  case 'upload':
+  html = `
+    <div class="auth-form">
+      <h2>Enviar Vídeo</h2>
+      <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Título do vídeo" required>
+        <input type="file" name="video" accept="video/*" required>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  `;
+  break;  
+        default:
+          html = `<h2>PetroSex</h2><p>Bem-vindo!</p>`;
+      }
+
+      content.innerHTML = html;
+
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        content.classList.remove('shifted');
+      }
+    }
+
+      function logout() {
+      localStorage.removeItem('user');
+      updateUserIcon();
+      showContent('conta');
+    }
+
+    function updateUserIcon() {
+      const user = localStorage.getItem('user');
+      document.getElementById('userIcon').textContent = user ? `👤 ${user}` : '👤';
+    }
+
+    updateUserIcon();
+  </script>
+</body>
+</html>
+<?php
